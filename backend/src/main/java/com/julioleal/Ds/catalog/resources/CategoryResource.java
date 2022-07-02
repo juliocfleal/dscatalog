@@ -1,6 +1,5 @@
 package com.julioleal.Ds.catalog.resources;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.julioleal.Ds.catalog.entities.Category;
+import com.julioleal.Ds.catalog.dto.CategoryDTO;
 import com.julioleal.Ds.catalog.services.CategoryService;
 
 @RestController
@@ -20,8 +19,8 @@ public class CategoryResource {
 	private CategoryService categoryeService;
 
 	@GetMapping
-	public ResponseEntity<List<Category>> findAll(){
-		List<Category> list = categoryeService.findAll();
+	public ResponseEntity<List<CategoryDTO>> findAll(){
+		List<CategoryDTO> list = categoryeService.findAll();
 		
 		return ResponseEntity.ok().body(list);
 	}
