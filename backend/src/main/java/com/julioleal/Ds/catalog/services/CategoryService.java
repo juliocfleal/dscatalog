@@ -31,4 +31,11 @@ public class CategoryService {
 		CategoryDTO catDTO = new CategoryDTO(cat);
 		return catDTO;
 	}
+
+	public CategoryDTO insert(CategoryDTO dto) {
+		Category ctgr = new Category();
+		ctgr.setName(dto.getName());
+		ctgr = repo.save(ctgr);
+		return new CategoryDTO(ctgr);
+	}
 }
