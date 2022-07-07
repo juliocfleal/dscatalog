@@ -10,8 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.julioleal.Ds.catalog.dto.CategoryDTO;
 import com.julioleal.Ds.catalog.dto.ProductDTO;
+import com.julioleal.Ds.catalog.entities.Category;
 import com.julioleal.Ds.catalog.entities.Product;
+import com.julioleal.Ds.catalog.repositories.CategoryRepository;
 import com.julioleal.Ds.catalog.repositories.ProductRepository;
 import com.julioleal.Ds.catalog.services.exceptions.DataBaseException;
 import com.julioleal.Ds.catalog.services.exceptions.ResourceNotFoundException;
@@ -21,6 +24,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductRepository repo;
+	
+	@Autowired
+	private CategoryRepository catrepo;
 
 	@Transactional(readOnly = true)
 	public Page<ProductDTO> findAllPaged(PageRequest pageRequest) {
@@ -39,7 +45,7 @@ public class ProductService {
 	@Transactional
 	public ProductDTO insert(ProductDTO dto) {
 		Product ctgr = new Product();
-//		ctgr.setName(dto.getName());
+		copyDtoToEntity(ctgr, dto);
 		ctgr = repo.save(ctgr);
 		return new ProductDTO(ctgr);
 	}
@@ -49,7 +55,7 @@ public class ProductService {
 		try {
 
 			Product ctgr = repo.getReferenceById(id);
-//			ctgr.setName(dto.getName());
+			copyDtoToEntity(ctgr, dto);
 			ctgr = repo.save(ctgr);
 			return new ProductDTO(ctgr);
 		} catch (EntityNotFoundException e) {
@@ -65,5 +71,17 @@ public class ProductService {
 		}catch (DataIntegrityViolationException e) {
 			throw new DataBaseException("Integrity violation");
 		}		
+	}
+	private void copyDtoToEntity(Product product, ProductDTO dto ) {
+		product.setName(dto.getName());
+		product.setDescription(dto.getDescription());
+		product.setDate(dto.getDate());
+		product.setImgUrl(dto.getImgUrl());
+		product.setPrice(dto.getPrice());
+		product.getCategories().clear();
+		for(CategoryDTO catDto : dto.getCategories()) {
+			Category category = catrepo.getReferenceById(catDto.getId());
+			product.getCategories().add(category);
+		}
 	}
 }
