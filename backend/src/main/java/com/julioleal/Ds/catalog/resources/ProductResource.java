@@ -24,38 +24,38 @@ import com.julioleal.Ds.catalog.services.ProductService;
 public class ProductResource {
 
 	@Autowired
-	private ProductService categoryeService;
+	private ProductService productService;
 
 	@GetMapping
 	public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageble) {
-		Page<ProductDTO> list = categoryeService.findAllPaged(pageble);
+		Page<ProductDTO> list = productService.findAllPaged(pageble);
 
 		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
-		ProductDTO category = categoryeService.findById(id);
+		ProductDTO product = productService.findById(id);
 
-		return ResponseEntity.ok().body(category);
+		return ResponseEntity.ok().body(product);
 	}
 
 	@PostMapping
 	public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto) {
-		dto = categoryeService.insert(dto);
+		dto = productService.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO dto) {
-		dto = categoryeService.update(id, dto);
+		dto = productService.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		categoryeService.delete(id);
+		productService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 }
