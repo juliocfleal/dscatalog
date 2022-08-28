@@ -1,8 +1,12 @@
 package com.julioleal.Ds.catalog.resources.exceptions;
 
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.Set;
 
-public class StandartError {
+public class StandartError implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private Instant timestamp;
 	private Integer status;
 	private String error;
