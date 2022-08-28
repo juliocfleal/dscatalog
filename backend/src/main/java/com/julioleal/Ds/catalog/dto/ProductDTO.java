@@ -6,17 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+
 import com.julioleal.Ds.catalog.entities.Category;
 import com.julioleal.Ds.catalog.entities.Product;
 
 public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private long id;
-	private String name;
+private long id;
+
+@NotBlank(message = "Campo obrigatorio")
+private String name;
 	private String description;
+	
+	@Positive(message = "O preço deve ser um valor positivo")
 	private Double price;
 	private String imgUrl;
+	
+	@PastOrPresent(message = "A data e invalida")
 	private Instant date;
 
 	private List<CategoryDTO> categories = new ArrayList<>();
