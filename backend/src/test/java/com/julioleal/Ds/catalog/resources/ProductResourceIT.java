@@ -27,10 +27,7 @@ public class ProductResourceIT {
  
 	private Long validId;
 	private Long invalidId;
-	private Long numberOfRegistrations;
-	
-	@Autowired
-	private ProductResource resource;
+
 	
 	@Autowired
 	private MockMvc mockMvc;
@@ -42,7 +39,6 @@ public class ProductResourceIT {
 	void setUp() throws Exception{
 		validId = 1L;
 		invalidId = 1000L;
-		numberOfRegistrations = 25L;
 	}
 	
 	@Test

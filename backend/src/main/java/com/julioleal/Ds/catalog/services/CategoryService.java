@@ -29,7 +29,7 @@ public class CategoryService {
 		return listDTO;
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional
 	public CategoryDTO findById(Long id) {
 		Category cat = repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Entity not found!"));
 		CategoryDTO catDTO = new CategoryDTO(cat);
@@ -53,7 +53,7 @@ public class CategoryService {
 			ctgr = repo.save(ctgr);
 			return new CategoryDTO(ctgr);
 		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id not found" + id);
+			throw new ResourceNotFoundException("Id not found " + id);
 		}
 	}
 
