@@ -16,16 +16,18 @@ import com.julioleal.Ds.catalog.entities.Product;
 public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-private long id;
+	private long id;
 
-@NotBlank(message = "Campo obrigatorio")
-private String name;
+	@NotBlank(message = "Campo obrigatorio")
+	private String name;
+
+	@NotBlank(message = "Campo obrigatorio")
 	private String description;
-	
+
 	@Positive(message = "O preço deve ser um valor positivo")
 	private Double price;
 	private String imgUrl;
-	
+
 	@PastOrPresent(message = "A data e invalida")
 	private Instant date;
 

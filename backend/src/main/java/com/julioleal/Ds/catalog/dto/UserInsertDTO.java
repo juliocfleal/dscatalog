@@ -1,5 +1,8 @@
 package com.julioleal.Ds.catalog.dto;
 
+import com.julioleal.Ds.catalog.services.validation.UserInsertValid;
+
+@UserInsertValid
 public class UserInsertDTO extends UserDTO{
 	private static final long serialVersionUID = 1L;
 	
