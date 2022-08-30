@@ -10,11 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.HttpServerErrorException.InternalServerError;
 
 import com.julioleal.Ds.catalog.dto.RoleDTO;
 import com.julioleal.Ds.catalog.dto.UserDTO;
 import com.julioleal.Ds.catalog.dto.UserInsertDTO;
+import com.julioleal.Ds.catalog.dto.UserUpdateDTO;
 import com.julioleal.Ds.catalog.entities.Role;
 import com.julioleal.Ds.catalog.entities.User;
 import com.julioleal.Ds.catalog.repositories.RoleRepository;
@@ -56,7 +56,7 @@ public class UserService {
 	}
 	
 	@Transactional
-	public UserDTO update(Long id, UserDTO dto) {
+	public UserDTO update(Long id, UserUpdateDTO dto) {
 		try {
 		User obj = repository.getReferenceById(id);
 		obj.setFirstName(dto.getFirstName());

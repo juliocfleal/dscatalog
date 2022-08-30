@@ -1,4 +1,4 @@
-package com.julioleal.Ds.catalog.services;
+package com.julioleal.Ds.catalog.services.validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,6 @@ import com.julioleal.Ds.catalog.dto.UserInsertDTO;
 import com.julioleal.Ds.catalog.entities.User;
 import com.julioleal.Ds.catalog.repositories.UserRepository;
 import com.julioleal.Ds.catalog.resources.exceptions.FieldMessage;
-import com.julioleal.Ds.catalog.services.validation.UserInsertValid;
 
 public class UserInsertValidator implements ConstraintValidator<UserInsertValid, UserInsertDTO> {
 	
