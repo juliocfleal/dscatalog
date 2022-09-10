@@ -8,6 +8,8 @@ public class DsCatalogApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DsCatalogApplication.class, args);
+		
 	}
+	
 
 }
