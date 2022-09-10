@@ -48,7 +48,7 @@ public class CategoryService {
 	public CategoryDTO update(Long id, CategoryDTO dto) {
 		try {
 
-			Category ctgr = repo.getReferenceById(id);
+			Category ctgr = repo.getOne(id);
 			ctgr.setName(dto.getName());
 			ctgr = repo.save(ctgr);
 			return new CategoryDTO(ctgr);

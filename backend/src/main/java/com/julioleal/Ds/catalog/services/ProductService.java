@@ -54,7 +54,7 @@ public class ProductService {
 	public ProductDTO update(Long id, ProductDTO dto) {
 		try {
 
-			Product ctgr = repo.getReferenceById(id);
+			Product ctgr = repo.getOne(id);
 			copyDtoToEntity(ctgr, dto);
 			ctgr = repo.save(ctgr);
 			return new ProductDTO(ctgr);
@@ -80,7 +80,7 @@ public class ProductService {
 		product.setPrice(dto.getPrice());
 		product.getCategories().clear();
 		for(CategoryDTO catDto : dto.getCategories()) {
-			Category category = catrepo.getReferenceById(catDto.getId());
+			Category category = catrepo.getOne(catDto.getId());
 			product.getCategories().add(category);
 		}
 	}

@@ -126,13 +126,13 @@ public class ProductResourceTests {
 		ResultActions result = mockMvc.perform(put("/products/{id}", invalidId).content(jsonBody)
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
 
-		result.andExpectAll(status().isNotFound());
+		result.andExpect(status().isNotFound());
 	}
 
 	@Test
 	public void findByIdShouldThrowExceptionWhenIdIsInvalid() throws Exception {
 		ResultActions result = mockMvc.perform(get("/products/{id}", invalidId).accept(MediaType.APPLICATION_JSON));
-		result.andExpectAll(status().isNotFound());
+		result.andExpect(status().isNotFound());
 	}
 
 	@Test
