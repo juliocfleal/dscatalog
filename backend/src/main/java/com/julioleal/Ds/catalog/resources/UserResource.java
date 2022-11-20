@@ -39,9 +39,9 @@ public class UserResource {
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
-		UserDTO product = service.findById(id);
+		UserDTO user = service.findById(id);
 
-		return ResponseEntity.ok().body(product);
+		return ResponseEntity.ok().body(user);
 	}
 
 	@PostMapping

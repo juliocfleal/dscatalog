@@ -1,5 +1,8 @@
 package com.julioleal.Ds.catalog.services;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +32,9 @@ public class ProductService {
 	private CategoryRepository catrepo;
 
 	@Transactional(readOnly = true)
-	public Page<ProductDTO> findAllPaged(Pageable pageble) {
-		Page<Product> list = repo.findAll(pageble);
+	public Page<ProductDTO> findAllPaged(Long categoryId, String name,  Pageable pageble) {
+		List<Category> categories = (categoryId == 0) ? null : Arrays.asList(catrepo.getOne(categoryId));
+		Page<Product> list = repo.find(categories, name, pageble);
 		Page<ProductDTO> listDTO = list.map(x -> new ProductDTO(x));
 		return listDTO;
 	}
